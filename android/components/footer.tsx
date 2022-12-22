@@ -9,10 +9,10 @@ const Footer = () => {
   const dispatch = useAppDispatch();
   const onPress = () => dispatch(startGame());
   let active: boolean = true;
-  let myStyles = [styles.footer]
+  let myStyles :[{}] = [styles.footer]
   if (!player|| winner) {
     active = true;
-    myStyles = [styles.footer , styles.active]
+    myStyles.push(styles.active);
   } else {
     active =false
     myStyles = [styles.footer]
@@ -20,11 +20,11 @@ const Footer = () => {
   console.log(`player =${player} winner = ${winner} active =${active}`)
   return (
     <TouchableOpacity
-      style={styles.footer}
+      style={myStyles}
       //is there a winner
       disabled={!active}
       onPress={onPress}>
-      <View>
+      <View >
         <Text style={{textTransform: 'uppercase', color: variables.text_color}}>
           { 
             active ? 'start game' : `${player}'s turn`  
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   active :{
-    backgroundColor : variables.button_background
+    backgroundColor : variables.button_background,
+
   }
 });

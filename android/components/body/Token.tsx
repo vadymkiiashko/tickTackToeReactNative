@@ -13,6 +13,8 @@ type SignProps = {
 const getStyles =(sign : string) =>{
   return {
     fontSize: 60,
+    height : '100%',
+    width : '100%',
     color : sign === 'x' ? styles.x.color : styles.o.color,
   }
 
@@ -31,7 +33,9 @@ const Token: React.FC<SignProps> = ({sign, purpose, index, indexRow}) => {
     <TouchableOpacity
       onPress={() => dispatch(markCell({indexRow, index}))}
       style={myStyle}>
-      <Text style={getStyles(sign)}>{sign}</Text>
+      <View style={{alignSelf:'center',flex:1}}>
+        <Text style={getStyles(sign)}>{sign}</Text>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -40,6 +44,7 @@ export default Token;
 
 const styles = StyleSheet.create({
   cell: {
+
     width: `${100 / 3}%`,
     aspectRatio: 1,
     justifyContent: 'center',
@@ -56,10 +61,13 @@ const styles = StyleSheet.create({
   },
   x: {
     color: variables.x_token,
+    textAlign:'center',
     fontSize: 60,
   },
   o: {
     color: variables.o_token,
     fontSize: 60,
+    textAlign:'center',
+    
   },
 });
